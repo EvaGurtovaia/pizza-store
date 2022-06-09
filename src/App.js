@@ -1,5 +1,5 @@
-import Header from "./Header";
-import Categories from "./Categories";
+import Header from "./components/Header";
+import Categories from "./components/Categories";
 import "./scss/app.scss";
 
 const App = () => {
