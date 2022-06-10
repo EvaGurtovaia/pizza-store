@@ -2,8 +2,8 @@ import "../scss/app.scss";
 
 const Sort = () => {
     return (
-        <div class="sort">
-            <div class="sort__label">
+        <div className="sort">
+            <div className="sort__label">
                 <svg
                     width="10"
                     height="6"
@@ -19,9 +19,9 @@ const Sort = () => {
                 <b>Filter:</b>
                 <span>Most Popular</span>
             </div>
-            <div class="sort__popup">
+            <div className="sort__popup">
                 <ul>
-                    <li class="active">most popular</li>
+                    <li className="active">most popular</li>
                     <li>price</li>
                 </ul>
             </div>

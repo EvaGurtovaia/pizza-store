@@ -1,28 +1,34 @@
+import { useState } from "react";
 import "../scss/app.scss";
 
 const PizzaItem = ({ title, price }) => {
+    const [count, setCount] = useState(0);
     return (
-        <div class="pizza-block">
+        <div className="pizza-block">
             <img
-                class="pizza-block__image"
+                className="pizza-block__image"
                 src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
                 alt="Pizza"
             />
-            <h4 class="pizza-block__title">{title}</h4>
-            <div class="pizza-block__selector">
+            <h4 className="pizza-block__title">{title}</h4>
+            <div className="pizza-block__selector">
                 <ul>
-                    <li class="active">thin</li>
+                    <li className="active">thin</li>
                     <li>thick</li>
                 </ul>
                 <ul>
-                    <li class="active">14 inch</li>
+                    <li className="active">14 inch</li>
                     <li>16 inch</li>
                     <li>18 inch</li>
                 </ul>
             </div>
-            <div class="pizza-block__bottom">
-                <div class="pizza-block__price">from ${price}</div>
-                <div class="button button--outline button--add">
+            <div className="pizza-block__bottom">
+                <div className="pizza-block__price">from ${price}</div>
+                <button
+                    className="button button--outline button--add"
+                    //type="button"
+                    onClick={() => setCount(count + 1)}
+                >
                     <svg
                         width="12"
                         height="12"
@@ -36,8 +42,8 @@ const PizzaItem = ({ title, price }) => {
                         />
                     </svg>
                     <span>Add </span>
-                    <i>2</i>
-                </div>
+                    <i>{count}</i>
+                </button>
             </div>
         </div>
     );

@@ -2,9 +2,9 @@ import "../scss/app.scss";
 
 const Categories = () => {
     return (
-        <div class="categories">
+        <div className="categories">
             <ul>
-                <li class="active">All pizzas</li>
+                <li className="active">All pizzas</li>
                 <li>Meat</li>
                 <li>Veggie</li>
                 <li>Seafood</li>
