@@ -13,7 +13,7 @@ const Categories = () => {
         "Veggie",
         "Seafood",
         "Spicy",
-        "Stuffed",
+        "Gluten Free",
     ];
 
     return (
