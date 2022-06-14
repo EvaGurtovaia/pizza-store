@@ -1,6 +1,18 @@
+import { useState } from "react";
+
 import "../scss/app.scss";
 
 const Sort = () => {
+    const [open, setOpen] = useState(false);
+    const listOfFilters = ["most popular", "price"];
+    const [selected, setSelected] = useState(0);
+    const selectedParam = listOfFilters[selected];
+
+    const onClickListItem = (idx) => {
+        setSelected(idx);
+        setOpen(false);
+    };
+
     return (
         <div className="sort">
             <div className="sort__label">
@@ -17,14 +29,23 @@ const Sort = () => {
                     />
                 </svg>
                 <b>Filter:</b>
-                <span>Most Popular</span>
+                <span onClick={() => setOpen(!open)}>{selectedParam}</span>
             </div>
-            <div className="sort__popup">
-                <ul>
-                    <li className="active">most popular</li>
-                    <li>price</li>
-                </ul>
-            </div>
+            {open && (
+                <div className="sort__popup">
+                    <ul>
+                        {listOfFilters.map((filterName, idx) => (
+                            <li
+                                key={idx}
+                                onClick={() => onClickListItem(idx)}
+                                className={selected === idx ? "active" : " "}
+                            >
+                                {filterName}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
