@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../scss/app.scss";
 
-const PizzaItem = ({ title, price, image, sizes, types }) => {
+const PizzaItem = ({ key, title, price, image, sizes, types }) => {
     const [count, setCount] = useState(0);
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(0);
