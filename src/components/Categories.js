@@ -23,6 +23,7 @@ const Categories = () => {
                     <li
                         onClick={() => onClickCategory(idx)}
                         className={activeCategory === idx ? "active" : " "}
+                        key={idx}
                     >
                         {category}
                     </li>
