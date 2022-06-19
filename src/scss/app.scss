@@ -32,6 +32,7 @@ body {
     margin-bottom: 50px;
   }
 
+
   &__items {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -51,6 +52,10 @@ body {
       }
 
     
+  }
+
+  &__items-cart {
+    display: grid;
   }
 
   &__top {
@@ -122,7 +127,7 @@ body {
     span {
       display: inline-block;
       margin-left: 7px;
-      color: #b6b6b6;
+      color: orangered;
       font-size: 18px;
     }
 
@@ -135,11 +140,11 @@ body {
     &:hover {
       svg {
         path {
-          stroke: darken($color: #b6b6b6, $amount: 50);
+          stroke: darken($color: rgb(0, 76, 255), $amount: 50);
         }
       }
       span {
-        color: darken($color: #b6b6b6, $amount: 50);
+        color: darken($color: rgb(0, 76, 255), $amount: 50);
       }
     }
   }
@@ -279,7 +284,7 @@ body {
         border-color: darken($color: $gray-line, $amount: 10);
 
         span {
-          color: darken($color: $gray-line, $amount: 20);
+          color: darken($color: orangered, $amount: 20);
           font-weight: 500;
           font-weight: 600;
         }
