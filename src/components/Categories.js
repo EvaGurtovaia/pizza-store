@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "../scss/app.scss";
 
-const Categories = () => {
+const Categories = ({ value, onClickCategory}) => {
     const [activeCategory, setActiveCategory] = useState(0);
-    const onClickCategory = (idx) => {
-        setActiveCategory(idx);
-    };
+    //const onClickCategory = (idx) => {
+     //   setActiveCategory(idx);
+    //};
 
     const listOfCategories = [
         "All Pizzas",
@@ -19,13 +19,13 @@ const Categories = () => {
     return (
         <div className="categories">
             <ul>
-                {listOfCategories.map((category, idx) => (
+                {listOfCategories.map((categoryName, idx) => (
                     <li
                         onClick={() => onClickCategory(idx)}
-                        className={activeCategory === idx ? "active" : " "}
+                        className={value === idx ? "active" : " "}
                         key={idx}
                     >
-                        {category}
+                        {categoryName}
                     </li>
                 ))}
                 ;
