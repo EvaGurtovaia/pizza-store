@@ -2,11 +2,12 @@ import { useState } from "react";
 
 import "../scss/app.scss";
 
-const Sort = ({ value, onChangeSort}) => {
+const Sort = ({ value, onChangeSort }) => {
     const [open, setOpen] = useState(false);
     const listOfFilters = [
         { name: "most popular", sortProperty: "rating" },
-        { name: "price", sortProperty: "price" },
+        { name: "price descending", sortProperty: "price" },
+        { name: "price ascending", sortProperty: "-price" },
     ];
 
     const onClickListItem = (idx) => {
@@ -39,7 +40,11 @@ const Sort = ({ value, onChangeSort}) => {
                             <li
                                 key={idx}
                                 onClick={() => onClickListItem(obj)}
-                                className={value.sortProperty === obj.sortProperty ? "active" : " "}
+                                className={
+                                    value.sortProperty === obj.sortProperty
+                                        ? "active"
+                                        : " "
+                                }
                             >
                                 {obj.name}
                             </li>
