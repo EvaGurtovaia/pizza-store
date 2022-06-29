@@ -1,0 +1,22 @@
+.root {
+    position: relative;
+    left: -120px;
+}
+
+
+.input {
+    position: inline;
+   
+    border: 1 px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 20px;
+    width: 400px;
+    border-radius: 15px;
+    font-size: 16px;
+
+}
+
+.clearIcon {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+}

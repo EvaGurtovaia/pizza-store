@@ -1,10 +1,11 @@
+import ReactPaginate from "react-paginate";
 import { useState, useEffect } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Skeleton from "../components/Skeleton";
 import PizzaItem from "../components/PizzaItem";
 
-const Home = () => {
+const Home = ({ searchValue }) => {
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortType, setSortType] = useState({
@@ -18,8 +19,9 @@ const Home = () => {
         const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
         const sortBy = sortType.sortProperty.replace("-", "");
         const category = categoryId > 0 ? `category=${categoryId}` : " ";
+        const search = searchValue ? `&search=${searchValue}` : " ";
         fetch(
-            `https://62aa13613b3143855441902b.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`
+            `https://62aa13613b3143855441902b.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}`
         )
             .then((res) => {
                 return res.json();
@@ -29,7 +31,28 @@ const Home = () => {
                 setIsLoading(false);
             });
         window.scrollTo(0, 0);
-    }, [categoryId, sortType]);
+    }, [categoryId, sortType, searchValue]);
+
+    const skeleton = [...new Array(6)].map((_, idx) => <Skeleton key={idx} />);
+
+    const pizzas = items
+        //.filter((pizza) => {
+        //  if (pizza.title.toLowerCase().includes(searchValue.toLowerCase())) {
+        //      return true;
+        // }
+        // return false;
+        //  })
+        .map((pizza) => (
+            <PizzaItem
+                key={pizza.key}
+                title={pizza.title}
+                price={pizza.price}
+                image={pizza.imageUrl}
+                sizes={pizza.sizes}
+                types={pizza.types}
+            />
+        ));
+
     return (
         <>
             <div className="content__top">
@@ -45,20 +68,7 @@ const Home = () => {
             <div>
                 <h2 className="content__title">All pizzas</h2>
                 <div className="content__items">
-                    {isLoading
-                        ? [...new Array(6)].map((_, idx) => (
-                              <Skeleton key={idx} />
-                          ))
-                        : items.map((pizza) => (
-                              <PizzaItem
-                                  key={pizza.key}
-                                  title={pizza.title}
-                                  price={pizza.price}
-                                  image={pizza.imageUrl}
-                                  sizes={pizza.sizes}
-                                  types={pizza.types}
-                              />
-                          ))}
+                    {isLoading ? skeleton : pizzas}
                 </div>
             </div>
         </>
