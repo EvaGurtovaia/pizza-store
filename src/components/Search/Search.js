@@ -1,6 +1,10 @@
+import React from "react";
 import styles from "./Search.module.scss";
+import { SearchContext } from "../../App";
 
-const Search = ({ searchValue, setSearchValue }) => {
+const Search = () => {
+    const { searchValue, setSearchValue } = React.useContext(SearchContext);
+
     return (
         <div className={styles.root}>
             <input
@@ -9,7 +13,14 @@ const Search = ({ searchValue, setSearchValue }) => {
                 className={styles.input}
                 placeholder="🔎 SEARCH"
             />
-            {searchValue && (<div onClick={() => setSearchValue("")} className={styles.clearIcon}>✖️</div>)}
+            {searchValue && (
+                <div
+                    onClick={() => setSearchValue("")}
+                    className={styles.clearIcon}
+                >
+                    ✖️
+                </div>
+            )}
         </div>
     );
 };

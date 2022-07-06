@@ -1,11 +1,15 @@
-import ReactPaginate from "react-paginate";
+import React from "react";
 import { useState, useEffect } from "react";
+import { omitBy, isNull } from "lodash";
+import { SearchContext } from "../App";
 import Categories from "../components/Categories";
+import Pagination from "../components/Pagination/Pagination";
+import PizzaItem from "../components/PizzaItem";
 import Sort from "../components/Sort";
 import Skeleton from "../components/Skeleton";
-import PizzaItem from "../components/PizzaItem";
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+    const { searchValue } = React.useContext(SearchContext);
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortType, setSortType] = useState({
@@ -16,12 +20,20 @@ const Home = ({ searchValue }) => {
 
     useEffect(() => {
         setIsLoading(true);
-        const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
-        const sortBy = sortType.sortProperty.replace("-", "");
-        const category = categoryId > 0 ? `category=${categoryId}` : " ";
-        const search = searchValue ? `&search=${searchValue}` : " ";
+        const params = new URLSearchParams(
+            omitBy(
+                {
+                    order: sortType.sortProperty.includes("-") ? "asc" : "desc",
+                    sortBy: sortType.sortProperty.replace("-", ""),
+                    category: categoryId > 0 ? categoryId : null,
+                    search: searchValue ? searchValue : null,
+                },
+                isNull
+            )
+        );
+
         fetch(
-            `https://62aa13613b3143855441902b.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}`
+            `https://62aa13613b3143855441902b.mockapi.io/items?${params.toString()}`
         )
             .then((res) => {
                 return res.json();
@@ -70,6 +82,7 @@ const Home = ({ searchValue }) => {
                 <div className="content__items">
                     {isLoading ? skeleton : pizzas}
                 </div>
+                <Pagination />
             </div>
         </>
     );
